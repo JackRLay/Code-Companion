@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<title>Foroom- Log In</title>
+	<link rel ="stylesheet" href = "style.css">
+	<link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>	
+	<div class="navigationbar"> 
+		<a href= "index.html"><img src="foroomlogo.png" width="135" height="59" alt="foroomlogo" class="navimage"> </a>
+		<a class="buttons" href="#browse"><em class="fa fa-search"></em> Browse</a>
+  		<a class="buttons" href="#help">Help</a>
+		<a class="active" href ="login.html"> Sign in</a><a class="account" href ="login.html"> Register</a>
+	</div>
+<div class ="container">
+		<form action="success.html" method="post">
+	
+		<div class="loginform">
+			<label class="loginlabel">Email</label>			 
+			<input class="logininput" id ="email" type="email" name="email" required onBlur="validate(this);">
+		</div>
+	
+		<div class="loginform">
+			<label class="loginlabel">Password</label>
+			<input class ="logininput" id ="password" type="password" name="password" required onBlur="validate(this);">
+			<input class ="submit" type = "submit" value="Login">
+		    <input type="checkbox" onclick="togglePasswordVisibility()" id="showpass">
+			<label for="showpass" class="checkboxlabel">Show Password</label>
+			<div>
+		    <input type="checkbox" id="remember">
+			<label for="remember" class="checkboxlabel">Remember me</label>
+		    </div>
+		</div>
+	
+		<a href="#forgotpassword">Forgot Password?</a>
+			<div>
+					<a href="#forgotpassword">Need an account?</a>
+			</div>
+	</form>
+</div>	
+	
+	
+<script src="script.js"></script>	
+</body>
+</html>
