@@ -61,11 +61,13 @@ ________²('The sum of {0} and {1} is {2}'.________³(num1, num2, sum))
         <script>
             var editor= CodeMirror.fromTextArea(document.getElementById('editor'),
             {
+                //code editor layout
                 mode:"python",
                 theme:"darcula",
                 lineNumbers:"true",
                 
             });
+            //code editor settings
             editor.setSize("1000","900");
             editor.setOption("readOnly",true);
 
