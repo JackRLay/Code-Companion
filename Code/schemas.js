@@ -1,14 +1,14 @@
 var mongoose = require("mongoose");
 
-//Model for time trial question
-var ttQuestion= mongoose.model("ttQuestion",{question:String,choiceA:String,choiceB:String,choiceC:String,correct:String})
-//Model for whole time trial quiz
-var ttQuiz= mongoose.model("ttQuiz",{question1:ttQuestion.schema,
-                                     question2:ttQuestion.schema,
-                                     question3:ttQuestion.schema});
+// The schemas file holds the models for the question and quiz
 
-module.exports.ttQuestion=ttQuestion;
-module.exports.ttQuiz=ttQuiz;
+// The model for a question
+var ttQuestion = mongoose.model("Question", {name: String, question: String, ans1: String, ans2: String, ans3: String, answer: String});
 
+// The model for a quiz, consisting of questions
+var ttQuiz = mongoose.model("Quiz", {question1: ttQuestion.schema, 
+    question2: ttQuestion.schema,
+    question3: ttQuestion.schema});
 
-
+module.exports.ttQuestion = ttQuestion;
+module.exports.ttQuiz = ttQuiz;
