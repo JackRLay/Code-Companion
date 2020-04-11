@@ -15,119 +15,119 @@ const scoreDiv = document.getElementById("scoreContainer");
 
 var questionsData;
 var questions = [];
-var questions2 = [];
+var questions2= [];
 var choices= [];
 var answer;
+var question1;
+var questionsFromDB= [];
 var data;
-var question1
 
 
 var socket= io();
 
-async function getQuiz2() {                    
+async function getQuizName() {                    
     await $(function() {
         $.get("http://localhost:9000/ttquiz/ModulusTT");
-        console.log("called")
     });
 }
 
-function getQuiz(){
-    console.log("I did something")
-    var quizName="ModulusTT";    //later replace with real one passed
-    
-                       
-        //shouldnt be doing it here, should be getting data
-        $.get("http://localhost:9000/",{},function(res){
-        console.log("get was called")
-        data=res;
-        console.log(data);
-        //get questions from data and put into array
-        questions[0] = data.question1.question;
-        questions[1] = data.question2.question;
-        questions[2] = data.question3.question;
-        question1=questions[0]
-        var text= "   wqdwqdqwd"
-        console.log(questions);
-        console.log(text);
-        //get choices from data and put into array    
-        choices[0] = data.question1.ans1;
-        choices[1] = data.question1.ans2;
-        choices[2] = data.question1.ans3;
-        choices[3] = data.question2.ans1;
-        choices[4] = data.question2.ans2;
-        choices[5] = data.question2.ans3;
-        choices[6] = data.question3.ans1;
-        choices[7] = data.question3.ans2;
-        choices[8] = data.question3.ans3;
+function generate(data){
+  
+   console.log("thisisdbbb"+ questionsFromDB[0].question)
+   return questionsFromDB;
 
-    console.log(choices);
+}
+
+function getQuiz(){  
+         getQuizName();
+                       
+        $.get("http://localhost:9000/",{},function(res){
+        let data=res; 
+        startQuiz(data);
+        //generate(data);
 })
 }
-var thisq= String(questions[0])
-    var questionTest = {
-        question: thisq,
-        choiceA: "doog",
-        choiceB: "doog",
-        choiceC: "doog"
-    }
-
-    questions2 = [questionTest,questionTest,questionTest]
-
-/*     //{
-        /* question : "[question1]",
-       // imgSrc : "img/html.png",
-        choiceA : "choices[0]",
-        choiceB : "choices[1]",
-        choiceC : "choices[2]",
-        //correct : "A"
-    },{
-        question : questions[1],
-       // imgSrc : "img/css.png",
-        choiceA : "Divides two numbers and returns the result",
-        choiceB : "Returns the remainder of two numbers when divided",
-        choiceC : "Returns the result and remainder of a division",
-        //correct : "B"
-    },{
-        question : "this one is just text",
-        //imgSrc : "img/js.png",
-        choiceA : "5",
-        choiceB : "4",
-        choiceC : "2",
-        //correct : "C"*/
-    //} 
-//]
-    ;
 
 
-const lastQuestion = questions2.length - 1;
-let runningQuestion = 0;
-let count = 0;
+const lastQuestion = 2;
+var runningQuestion = 0;
+var count = 0;
 const questionTime = 15; // 10s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
-let TIMER;
-let score = 0;
+var TIMER;
+var score = 0;
+
 
 // render a question
-function renderQuestion(){
-    let q = questions2[runningQuestion];
+function renderQuestion(questions2){
+    var questionsToDisplay=questions2
+    var q = questionsToDisplay[runningQuestion];
     
-    question.innerHTML = "<p>"+ questions2[runningQuestion].question +"</p>";
-    choiceA.innerHTML = questions2[runningQuestion].choiceA;
-    choiceB.innerHTML = questions2[runningQuestion].choiceB;
-    choiceC.innerHTML = questions2[runningQuestion].choiceC;
+    question.innerHTML = "<p>"+ questionsToDisplay[runningQuestion].question +"</p>";
+    choiceA.innerHTML = questionsToDisplay[runningQuestion].choiceA;
+    choiceB.innerHTML = questionsToDisplay[runningQuestion].choiceB;
+    choiceC.innerHTML = questionsToDisplay[runningQuestion].choiceC;
 }
 
-start.addEventListener("click",startQuiz);
+start.addEventListener("click",getQuiz());
 
-//* / start quiz
-function startQuiz(){
-    getQuiz2();
-    getQuiz();
+//start quiz
+function startQuiz(data){    
+    
+
+    //getQuiz();
+    console.log("data: "+data);
+
+  //get questions from data and put into array
+  questions[0] = data.question1.question;
+  console.log("1 "+questions[0])
+  questions[1] = data.question2.question;
+  console.log("2 "+questions[1])
+  questions[2] = data.question3.question;
+  question1=questions[0]
+  //get choices from data and put into array    
+  choices[0] = data.question1.ans1;
+  choices[1] = data.question1.ans2;
+  choices[2] = data.question1.ans3;
+  choices[3] = data.question2.ans1;
+  choices[4] = data.question2.ans2;
+  choices[5] = data.question2.ans3;
+  choices[6] = data.question3.ans1;
+  choices[7] = data.question3.ans2;
+  choices[8] = data.question3.ans3;
+
+  questionsFromDB = [
+
+      {
+          question : questions[0],
+        // imgSrc : "img/html.png",
+         choiceA : choices[0],
+         choiceB : choices[1],
+         choiceC : choices[2],
+         //correct : "A"
+     },{
+         question : questions[1],
+        // imgSrc : "img/css.png",
+         choiceA : "Divides two numbers and returns the result",
+         choiceB : "Returns the remainder of two numbers when divided",
+         choiceC : "Returns the result and remainder of a division",
+         //correct : "B"
+     },{
+         question : "this one is just text",
+         //imgSrc : "img/js.png",
+         choiceA : "5",
+         choiceB : "4",
+         choiceC : "2",
+         //correct : "C"
+     } 
+ ];
+
+
     // create some variables
     
     start.style.display = "none";
-    renderQuestion();
+    renderQuestion(questionsFromDB);
     quiz.style.display = "block";
     renderProgress();
     renderCounter();
