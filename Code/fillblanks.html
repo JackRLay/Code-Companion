@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Floats</title>
+        <script src="codemirror/lib/codemirror.js"></script>
+        <link href="codemirror/lib/codemirror.css" rel="stylesheet"/>
+        <script src="codemirror/mode/python/python.js"></script>
+        <link href="codemirror/theme/darcula.css" rel="stylesheet"/>
+
+        <link href="fillblanks.css" rel="stylesheet"/>
+        <script src="fillblanks.js"></script>
+
+    </head>
+    <body>
+
+        <div id="modalFail" class="modal">
+
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <b>Results</b>
+              <p>(RESULTS GO HERE)
+                  </p><br/>
+                <p>You did not correctly answer all questions</p>
+                <button>Try Again</button>
+                <button>Submit</button>
+
+                
+                
+            </div>
+          
+          </div>
+
+          <div id="modalPass" class="modal">
+
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <b>Results</b>
+              <p>3/3 Correct
+                  </p><br/>
+              <p>Well Done</p>
+              <button>Submit</button>
+                
+                
+            </div>
+          
+          </div>
+
+
+        <textarea id="editor" aria-readonly="true">
+# This program adds two numbers
+
+num1 = 1.5
+num2 = 6.3
+
+# Add two floats
+sum = float(num1) + ________¹(num2)
+
+# Display the sum
+________²('The sum of {0} and {1} is {2}'.________³(num1, num2, sum))
+</textarea>
+        <script>
+            var editor= CodeMirror.fromTextArea(document.getElementById('editor'),
+            {
+                //code editor layout
+                mode:"python",
+                theme:"darcula",
+                lineNumbers:"true",
+                
+            });
+            //code editor settings
+            editor.setSize("1000","900");
+            editor.setOption("readOnly",true);
+
+        </script>
+        <form>
+            <label>Complete the blank areas in the code</label><br><br>
+            <label for="ans1">1:</label>
+            <input type="text" id="ans1"><br>
+            <label for="ans2">2:</label>
+            <input type="text" id="ans2"><br>
+            <label for="ans3">3:</label>
+            <input type="text" id="ans3"><br>
+            
+            
+        </form>
+        <button onclick="checkAnswers()">Submit</button>
+    </body>
+</html>

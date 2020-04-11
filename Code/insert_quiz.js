@@ -12,7 +12,6 @@ MongoClient.connect(uri, { useNewUrlParser: true },
   // Connect to the right DB and create an object.
   var dbo = db.db("quizdb");
   var question1 = new schemas.ttQuestion( {
-    "name": "ModulusTT",
       "question" : "What is the symbol for the modulus operator?",
       "ans1" : "%",
       "ans2" : "&",
@@ -21,7 +20,6 @@ MongoClient.connect(uri, { useNewUrlParser: true },
   });
 
   var question2 = new schemas.ttQuestion( {
-    "name": "ModulusTT",
       "question" : "What does the modulus operator do?",
       "ans1" : "Divides two numbers and returns the result",
       "ans2" : "Returns the remainder of two numbers when divided",
@@ -30,7 +28,6 @@ MongoClient.connect(uri, { useNewUrlParser: true },
   });
   
   var question3 = new schemas.ttQuestion( {
-    "name": "ModulusTT",
       "question" : "What is the answer to the following?   22%5",
       "ans1" : "5",
       "ans2" : "4",
@@ -41,6 +38,7 @@ MongoClient.connect(uri, { useNewUrlParser: true },
 
     var quiz = new schemas.ttQuiz(
       {
+        "name": "ModulusTT",
         question1,
          question2,
          question3
