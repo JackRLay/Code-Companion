@@ -51,7 +51,7 @@ app.get('/', function(req, res, next) {
 
 app.get("/ttquiz/ModulusTT", function(req, res) {
    
-    // Connect to star wars collection
+    // Connect to modulus collection
     var results = dbo.collection("ModulusTT").find({});
     //Clears the array before filling it to prevent multiple quizzes from being loaded
        resultArray = []; 
@@ -68,6 +68,28 @@ app.get("/ttquiz/ModulusTT", function(req, res) {
     results = '';
     console.log(resultArray)
     console.log("ModulusTT");
+
+   });
+
+   app.get("/ttquiz/FirstTT", function(req, res) {
+   
+    // Connect to FirstTT collection
+    var results = dbo.collection("FirstTT").find({});
+    //Clears the array before filling it to prevent multiple quizzes from being loaded
+       resultArray = []; 
+    // Loops through results and converts to JSON string
+    results.forEach(function(doc,err) {
+   
+        resultArray.push(JSON.stringify(doc));   
+   
+    });
+
+       // Goes back to the root to then send the data
+    //res.redirect("/");
+    res.redirect("/");
+    results = '';
+    console.log(resultArray)
+    console.log("FirstTT");
 
    });
 

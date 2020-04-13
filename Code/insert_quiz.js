@@ -12,40 +12,40 @@ MongoClient.connect(uri, { useNewUrlParser: true },
   // Connect to the right DB and create an object.
   var dbo = db.db("quizdb");
   var question1 = new schemas.ttQuestion( {
-      "question" : "What is the symbol for the modulus operator?",
-      "ans1" : "%",
-      "ans2" : "&",
-      "ans3" : "@",
-      "answer" : "A"
+       "question" : "Which of the following is the correct way to print 'Code Companion' in Python?",
+       "ans1" : "print(\"Code Companion!\")",
+       "ans2" : "print(Hello World!)",
+       "ans3" : "echo(\"Code Companion!\")",
+       "answer" : "A"
   });
 
   var question2 = new schemas.ttQuestion( {
-      "question" : "What does the modulus operator do?",
-      "ans1" : "Divides two numbers and returns the result",
-      "ans2" : "Returns the remainder of two numbers when divided",
-      "ans3" : "Returns the result and remainder of a division",
+      "question" : "Python programs use what to structure the program?",
+      "ans1" : "Curly Brackets { }",
+      "ans2" : "Identation    ",
+      "ans3" : "Square Brackets [ ]",
       "answer" : "B"
   });
   
   var question3 = new schemas.ttQuestion( {
-      "question" : "What is the answer to the following?   22%5",
-      "ans1" : "5",
-      "ans2" : "4",
-      "ans3" : "2",
-      "answer" : "C"
+      "question" : "How do you comment code in Python?",
+      "ans1" : "//comment",
+      "ans2" : "#comment",
+      "ans3" : "\"comment\"",
+      "answer" : "B"
   });
   
 
     var quiz = new schemas.ttQuiz(
       {
-        "name": "ModulusTT",
+        "name": "FirstTT",
         question1,
          question2,
          question3
       }
     );
   
-  dbo.collection("ModulusTT").insertOne(quiz, function(err, res){
+  dbo.collection("FirstTT").insertOne(quiz, function(err, res){
     console.log("Added quiz");
     db.close
   });

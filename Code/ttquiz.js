@@ -21,30 +21,27 @@ var answer;
 var question1;
 var questionsFromDB= [];
 var data;
+var firstRun= true;
 
 
-var socket= io();
+
 
 async function getQuizName() {                    
     await $(function() {
-        $.get("http://localhost:9000/ttquiz/ModulusTT");
+        $.get("http://localhost:9000/ttquiz/FirstTT");
     });
 }
 
-function generate(data){
-  
-   console.log("thisisdbbb"+ questionsFromDB[0].question)
-   return questionsFromDB;
-
-}
 
 function getQuiz(){  
+
+        if (firstRun==true){
          getQuizName();
+        }
                        
         $.get("http://localhost:9000/",{},function(res){
         let data=res; 
         startQuiz(data);
-        //generate(data);
 })
 }
 
@@ -72,13 +69,8 @@ function renderQuestion(questions2){
 
 start.addEventListener("click",getQuiz());
 
-//start quiz
-function startQuiz(data){    
-    
-
-    //getQuiz();
-    console.log("data: "+data);
-
+function manipulateData(data){
+      
   //get questions from data and put into array
   questions[0] = data.question1.question;
   console.log("1 "+questions[0])
@@ -109,29 +101,39 @@ function startQuiz(data){
      },{
          question : questions[1],
         // imgSrc : "img/css.png",
-         choiceA : "Divides two numbers and returns the result",
-         choiceB : "Returns the remainder of two numbers when divided",
-         choiceC : "Returns the result and remainder of a division",
+         choiceA : choices[3],
+         choiceB : choices[4],
+         choiceC : choices[5],
          //correct : "B"
      },{
-         question : "this one is just text",
+         question : questions[2],
          //imgSrc : "img/js.png",
-         choiceA : "5",
-         choiceB : "4",
-         choiceC : "2",
+         choiceA : choices[6],
+         choiceB : choices[7],
+         choiceC : choices[8],
          //correct : "C"
      } 
  ];
+ return questionsFromDB;
+}
 
-
-    // create some variables
+//start quiz
+function startQuiz(data){    
     
+    questionsFromDB= manipulateData(data);
+
+    if (firstRun==true){
+    // create some variables
+    TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
     start.style.display = "none";
-    renderQuestion(questionsFromDB);
     quiz.style.display = "block";
+    firstRun=false;
+    }
+    renderQuestion(questionsFromDB);    
     renderProgress();
     renderCounter();
-    TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
+    
+    
 }
 
 // render progress
@@ -165,8 +167,25 @@ function renderCounter(){
 
 // checkAnwer
 
-function checkAnswer(answer){
-    if( answer == questions2[runningQuestion].correct){
+function getAnswer(response){
+    $.get("http://localhost:9000/",{},function(res){
+        let data=res; 
+        correct= [
+            data.question1.answer,
+            data.question2.answer,
+            data.question3.answer,
+        ]
+        questionsFromDB= manipulateData(data);
+        renderQuestion(questionsFromDB);   
+        checkAnswer(correct,response,data)
+})
+}
+
+function checkAnswer(correct, response, data){
+    questionsFromDB= manipulateData(data);
+    
+    if( response == correct[runningQuestion])
+    { 
         // answer is correct
         score++;
         // change progress color to green
@@ -179,7 +198,7 @@ function checkAnswer(answer){
     count = 0;
     if(runningQuestion < lastQuestion){
         runningQuestion++;
-        renderQuestion();
+        renderQuestion(questionsFromDB);
     }else{
         // end the quiz and show the score
         clearInterval(TIMER);
@@ -202,7 +221,7 @@ function scoreRender(){
     scoreDiv.style.display = "block";
     
     // calculate the amount of question percent answered by the user
-    const scorePerCent = Math.round(100 * score/questions2.length);
+    const scorePerCent = Math.round(100 * score/3);
     
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 }
