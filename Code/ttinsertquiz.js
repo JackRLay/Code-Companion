@@ -14,7 +14,7 @@ MongoClient.connect(uri, { useNewUrlParser: true },
   var question1 = new schemas.ttQuestion( {
        "question" : "Which of the following is the correct way to print 'Code Companion' in Python?",
        "ans1" : "print(\"Code Companion!\")",
-       "ans2" : "print(Hello World!)",
+       "ans2" : "print(Code Companion!)",
        "ans3" : "echo(\"Code Companion!\")",
        "answer" : "A"
   });

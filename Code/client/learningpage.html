@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Learning Page - Code Companion</title>
+        <script src="codemirror/lib/codemirror.js"></script>
+        <link href="codemirror/lib/codemirror.css" rel="stylesheet"/>
+        <script src="codemirror/mode/python/python.js"></script>
+        <link href="codemirror/theme/darcula.css" rel="stylesheet"/>
+        <link rel ="stylesheet" href = "style.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <link href="style.css" rel="stylesheet"/>
+        <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="learning.js"></script>
+
+    </head>
+    <body onload="loadInformation()">
+        <div class="navigationbar"> 
+
+            <img id="banner" src="resources/codetextlogo.png" width="275" height="55">
+    
+        <a class="buttons" href="#browse">Learn</a>
+        <a class="buttons" href="#students">Students</a>
+        
+      <div class="dropdownmenu">
+            <a class="dropdown"><em class="fa fa-user-circle"></em> Username <em class="fa fa-caret-down"></em></a>
+            <div class="dropdowncontent">
+                <a href="#account">Account</a>
+                <a href="index.html">Sign Out</a>
+          </div>
+        </div>
+        <a class="account" href ="#notifications"><em class="fa fa-bell-o"></em></a>
+    </div>
+        <textarea id="editor" aria-readonly="true">
+
+</textarea>
+<div id ="text">
+    
+</div> 
+        <a class="buttons" href="fillblanks.html">Activity</a>
+
+        <div id="mainText"></div>
+    </body>
+</html>

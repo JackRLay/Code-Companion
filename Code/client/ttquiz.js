@@ -1,5 +1,3 @@
-//var module = require("./module");  
-
 //getting all elements for later
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
@@ -28,7 +26,7 @@ var firstRun= true;
 
 async function getQuizName() {                    
     await $(function() {
-        $.get("http://localhost:9000/ttquiz/FirstTT");
+        $.get("http://localhost:9000/ttquiz/"+localStorage.getItem("id")+"TT");
     });
 }
 
@@ -56,8 +54,8 @@ var TIMER;
 var score = 0;
 
 
-// render a question
-function renderQuestion(questions2){
+//display a question
+function displayQuestion(questions2){
     var questionsToDisplay=questions2
     var q = questionsToDisplay[runningQuestion];
     
@@ -129,7 +127,7 @@ function startQuiz(data){
     quiz.style.display = "block";
     firstRun=false;
     }
-    renderQuestion(questionsFromDB);    
+    displayQuestion(questionsFromDB);    
     renderProgress();
     renderCounter();
     
@@ -156,7 +154,7 @@ function renderCounter(){
         answerIsWrong();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
-            renderQuestion();
+            displayQuestion();
         }else{
             // end the quiz and show the score
             clearInterval(TIMER);
@@ -176,7 +174,7 @@ function getAnswer(response){
             data.question3.answer,
         ]
         questionsFromDB= manipulateData(data);
-        renderQuestion(questionsFromDB);   
+        displayQuestion(questionsFromDB);   
         checkAnswer(correct,response,data)
 })
 }
@@ -198,7 +196,7 @@ function checkAnswer(correct, response, data){
     count = 0;
     if(runningQuestion < lastQuestion){
         runningQuestion++;
-        renderQuestion(questionsFromDB);
+        displayQuestion(questionsFromDB);
     }else{
         // end the quiz and show the score
         clearInterval(TIMER);

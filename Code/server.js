@@ -48,11 +48,13 @@ app.get('/', function(req, res, next) {
      })
 
 })
-
-app.get("/ttquiz/ModulusTT", function(req, res) {
+/********************************
+ *       TIME TRIAL CALL        *
+ ********************************/
+app.get("/ttquiz/:quizName", function(req, res) {
    
     // Connect to modulus collection
-    var results = dbo.collection("ModulusTT").find({});
+    var results = dbo.collection(req.params.quizName).find({});
     //Clears the array before filling it to prevent multiple quizzes from being loaded
        resultArray = []; 
     // Loops through results and converts to JSON string
@@ -66,15 +68,39 @@ app.get("/ttquiz/ModulusTT", function(req, res) {
     //res.redirect("/");
     res.redirect("/");
     results = '';
-    console.log(resultArray)
-    console.log("ModulusTT");
-
    });
 
-   app.get("/ttquiz/FirstTT", function(req, res) {
+
+
+/********************************
+ *      LEARNING PAGE CALL      *
+ ********************************/
+app.get("/learn/:infoName", function(req, res) {
+
+    // Connect to FirstTT collection
+    var results = dbo.collection(req.params.infoName).find({});
+    //Clears the array before filling it to prevent multiple quizzes from being loaded
+       resultArray = []; 
+    // Loops through results and converts to JSON string
+    results.forEach(function(doc,err) {
+   
+        resultArray.push(JSON.stringify(doc));   
+   
+    });
+
+       // Goes back to the root to then send the data
+    //res.redirect("/");
+    res.redirect("/");
+    results = '';
+   });
+
+/********************************
+ *      GUESS BLANKS CALL       *
+ ********************************/
+app.get("/blanks/:name", function(req, res) {
    
     // Connect to FirstTT collection
-    var results = dbo.collection("FirstTT").find({});
+    var results = dbo.collection(req.params.name).find({});
     //Clears the array before filling it to prevent multiple quizzes from being loaded
        resultArray = []; 
     // Loops through results and converts to JSON string
@@ -88,19 +114,5 @@ app.get("/ttquiz/ModulusTT", function(req, res) {
     //res.redirect("/");
     res.redirect("/");
     results = '';
-    console.log(resultArray)
-    console.log("FirstTT");
 
    });
-
-   //websocket set up
-    var io = require('socket.io')(serv,{});
-    io.sockets.on('connection', function(socket){
-    console.log("connection")
-
-    socket.on('startTT', function(data){
-        
-        socket.emit("quizData",{})
-    })
-
-});
