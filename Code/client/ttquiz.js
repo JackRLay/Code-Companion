@@ -37,7 +37,7 @@ function getQuiz(){
          getQuizName();
         }
                        
-        $.get("http://localhost:9000/",{},function(res){
+        $.get("http://localhost:9000/getData",{},function(res){
         let data=res; 
         startQuiz(data);
 })

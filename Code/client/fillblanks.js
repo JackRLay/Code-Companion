@@ -19,7 +19,7 @@ function getBlanks(){
          getBlanksName();
         
                        
-        $.get("http://localhost:9000/",{},function(res){
+        $.get("http://localhost:9000/getData",{},function(res){
         let data=res; 
         
         getData(data);
