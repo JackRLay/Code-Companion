@@ -5,35 +5,210 @@
 	<link rel ="stylesheet" href = "/style.css">
 	<script src="https://kit.fontawesome.com/d5653f4676.js" crossorigin="anonymous"></script>
     <script>
-             
+             function getLevel(){
+			//get users level and progress towards next level
+			var exp ="<%= user.exp %>"
+			var level = Math.floor(exp/100);
+			var progress= exp%100;
+			var rankText;
+			var rankNumber;
+			var badges=[];
+
+
+			document.getElementById("level").innerHTML=level;
+			document.getElementById("profileLevel").innerHTML="Level: "+level;
+			document.getElementById("expTotal").innerHTML=progress+"/100";
+			document.getElementById("expText").innerHTML=progress+"/100";
+
+			document.getElementById("expbar").style.width= progress+"%";
+			document.getElementById("profileexpbar").style.width= progress+"%";
+			console.log(exp)
+
+			//get the users rank using their exp
+			if(exp>=100 && exp<200){
+				rank="Apiring Programmer"
+				rankNumber=1
+				document.getElementById("1").style.display= "block";
+				
+			}
+			else if(exp>=200 && exp<300){
+				rank="Blossoming Beginner"
+				rankNumber=2
+				
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				
+			}
+			else if(exp>=300 && exp<400){
+				rank="Computer Charmer"
+				rankNumber=3
+				document.getElementsById("1").style.display= "block";
+				document.getElementsById("2").style.display= "block";
+				document.getElementsById("3").style.display= "block";
+
+			}
+			else if(exp>=400 && exp<500){
+				rank="Variable Vanguard"
+				rankNumber=4
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
+				document.getElementById("4").style.display= "block";
+			}
+			else if(exp>=500 && exp<1000){
+				rank="Whitespace Warrior"
+				rankNumber=5
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
+				document.getElementById("4").style.display= "block";
+				document.getElementById("5").style.display= "block";
+			}
+			else if(exp>=1000 && exp<1500){
+				rank="Coding Champion"
+				rankNumber=6
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
+				document.getElementById("4").style.display= "block";
+				document.getElementById("5").style.display= "block";
+				document.getElementById("6").style.display= "block";
+			}
+			else if(exp>=1500 && exp<2000){
+				rank="Python Professional"
+				rankNumber=7
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
+				document.getElementById("4").style.display= "block";
+				document.getElementById("5").style.display= "block";
+				document.getElementById("6").style.display= "block";
+				document.getElementById("7").style.display= "block";
+			}
+			else if(exp>=2000 && exp<2500){
+				rank="Float Fanatic"
+				rankNumber=8
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
+				document.getElementById("4").style.display= "block";
+				document.getElementById("5").style.display= "block";
+				document.getElementById("6").style.display= "block";
+				document.getElementById("7").style.display= "block";
+				document.getElementById("8").style.display= "block";
+			}
+			else if(exp>=2500 && exp<3000){
+				rank="Code Companion"
+				rankNumber=9
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
+				document.getElementById("4").style.display= "block";
+				document.getElementById("5").style.display= "block";
+				document.getElementById("6").style.display= "block";
+				document.getElementById("7").style.display= "block";
+				document.getElementById("8").style.display= "block";
+				document.getElementById("9").style.display= "block";
+			}
+			console.log(rank)
+			console.log(rankNumber)
+
+			document.getElementById("rank").innerHTML= "Rank: "+rank;
+
+		}
     </script>
 	
 </head>
 
-<body>
+<body onload="getLevel()">
 
 		
 	<div class="navigationbar"> 
 
 		
-		<a href="/home"><img id="banner" href= "/home" src="/resources/codetextlogo.png" width="275" height="55"> </a>
+		<a href="/home"><img id="banner" src="/resources/codetextlogo.png" width="275" height="55"> </a>
 	
 		
 	  <div class="dropdownmenu">
-			<a class="dropdown" href="/profile"> <%= user.name %> <em class="fa fa-caret-down"></em></a>
+			<img src="<%=user.thumbnail%>" alt="Avatar" id="avatar"></a>
+			<a class="dropdown" href="/profile"> <%= user.name %></a>
 			<div class="dropdowncontent">
-				<a href="index.html">Sign Out</a>
+				<a href="/logout">Sign Out</a>
 		  </div>
 		</div>
 		<div id="expcontainer" >
-			<div id="expbar"></div>
+			<div id="expbar">
+				<div id="expText"></div>
+			</div>
+			
 		</div>
-		<div id="level" ></div>
+		<div id="level"></div>
 		<div id="levelIcon" ><i class="fab fa-python"></i></div>
 		
 	</div>
-
+<div id="main">
+	
+		<img id= "avatarLarge" src="<%=user.thumbnail %>"/>
+		<div id="name" ><%= user.name %></div>
+		<div id="profileLevel"></div>
 		
+		<div id="profileexpcontainer" >
+			<div id="profileexpbar">
+				<div id="expTotal" ></i></div>
+			</div>
+		</div>
+
+		<div class= "bodyText" id= "rank"></div>
+		<div class= "bodyText">Badges</div>
+		
+
+	<div id="badges">
+		<div class="row">
+			<div class="column"  id=1 style="background-color:#397dff;">
+			  <h2>Aspiring Programmer</h2>
+			  <p>image</p>
+			</div>
+			<div class="column" id=2 style="background-color:#87b0ff;">
+			  <h2>Blossoming Beginner</h2>
+			  <p>image</p>
+			</div>
+			<div class="column" id=3 style="background-color:#397dff;">
+			  <h2>Computer Charmer</h2>
+			  <p>image</p>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="column" id=4 style="background-color:#397dff;">
+			  <h2>Variable Vanguard</h2>
+			  <p>image.</p>
+			</div>
+			<div class="column" id=5 style="background-color:#87b0ff;">
+			  <h2>Whitespace Warrior</h2>
+			  <p>image</p>
+			</div>
+			<div class="column" id=6 style="background-color:#397dff;">
+			  <h2>Coding Champion</h2>
+			  <p>image</p>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="column" id=7 style="background-color:#397dff;">
+			  <h2>Float Fanatic</h2>
+			  <p>image</p>
+			</div>
+			<div class="column" id=8 style="background-color:#87b0ff;">
+			  <h2>Python Professional</h2>
+			  <p>image</p>
+			</div>
+			<div class="column" id=9 style="background-color:#397dff;">
+			  <h2>Code Companion</h2>
+			  <p>image</p>
+			</div>
+		  </div>
+	
+	</div>
+</div>
+
 
 	
 </body>

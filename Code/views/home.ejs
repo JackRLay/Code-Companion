@@ -6,8 +6,9 @@
 	<script src="https://kit.fontawesome.com/d5653f4676.js" crossorigin="anonymous"></script>
 	<script>
 
-		function getSelected(id){
-            localStorage.setItem("id",id);
+		function getSelected(id, number){
+			localStorage.setItem("id",id);
+			localStorage.setItem("number",number);
 			window.location.href = "/learn"
 		}
 
@@ -17,11 +18,29 @@
 			var level = Math.floor(exp/100);
 			var progress= exp%100;
 
-
+			document.getElementById("expText").innerHTML=progress+"/100";
 			document.getElementById("level").innerHTML=level;
 			document.getElementById("expbar").style.width= progress+"%";
+			getCompleted();
 
 		}
+
+		function getCompleted(){
+			var completed= "<%= user.completed%>"
+			var clean = completed.replace(/ :/g, "")
+			clean = clean.replace(/:/g, "")
+			var split = clean.split(",");
+			var uniqueSet= new Set(split)
+			var array= [...uniqueSet];
+
+			console.log(array)
+
+			for(i=1;i<array.length;i++){
+			 	document.getElementById(array[i]).style.background= "#CCFFCC"
+			 }
+			
+		}
+
 	</script>
 </head>
 
@@ -31,31 +50,77 @@
 	<div class="navigationbar"> 
 
 		
-		<a href="/home"><img id="banner" href= "/home" src="/resources/codetextlogo.png" width="275" height="55"> </a>
+		<a href="/home"><img id="banner" src="/resources/codetextlogo.png" width="275" height="55"> </a>
 	
 		
-	  <div class="dropdownmenu">
-			<a class="dropdown" href="/profile"> <%= user.name %> <em class="fa fa-caret-down"></em></a>
+		<div class="dropdownmenu">
+			<img src="<%=user.thumbnail%>" alt="Avatar" id="avatar"></a>
+			<a class="dropdown" href="/profile"> <%= user.name %></a>
 			<div class="dropdowncontent">
-				<a href="index.html">Sign Out</a>
+				<a href="/logout">Sign Out</a>
 		  </div>
 		</div>
 		<div id="expcontainer" >
-			<div id="expbar"></div>
+			<div id="expbar">
+				<div id="expText"></div>
+			</div>
+			
 		</div>
-		<div id="level" ></div>
+		<div id="level"></div>
 		<div id="levelIcon" ><i class="fab fa-python"></i></div>
 		
 	</div>
 
-		
-<button id ="First" onClick="getSelected(this.id)">First</button>
-<button id ="Modulus" onClick="getSelected(this.id)">Modulus</button>
-<button id ="blank" onClick="getSelected(this.id)">blank</button>
-<button id ="blank" onClick="getSelected(this.id)">blank</button>
-<button id ="blank" onClick="getSelected(this.id)">blank</button>
-<button id ="blank" onClick="getSelected(this.id)">blank</button>
+<div id= "mainPanel">
+
+<div id="lessons">Lessons</div>
 	
-	
+<div id="lessonButtons">
+	<div class="row">
+		<div class="bcolumn" onClick="getSelected('First', 1)" id=1 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+		<div class="bcolumn" onClick="getSelected('Modulus', 2)" id=2 style="background-color:lightgray">
+		  <h2>Modulus</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+		<div class="bcolumn" onClick="getSelected(this.id, 3)" id=3 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="bcolumn" onClick="getSelected(this.id, 4)" id=4 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+		<div class="bcolumn" onClick="getSelected(this.id, 5)" id=5 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+		<div class="bcolumn" onClick="getSelected(this.id, 6)" id=6 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+	  </div>
+	  <div class="row">
+		<div class="bcolumn" onClick="getSelected(this.id, 2)" id=7 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+		<div class="bcolumn" onClick="getSelected(this.id, 2)" id=8 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lesson</p>
+		</div>
+		<div class="bcolumn" onClick="getSelected(this.id, 2)" id=9 style="background-color:lightgray">
+		  <h2>Introduction to Python</h2>
+		  <p>This will be the description of the lessno</p>
+		</div>
+	  </div>
+
+</div>
+</div>	
+</div>
 </body>
 </html>

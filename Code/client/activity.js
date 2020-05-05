@@ -15,7 +15,7 @@ async function getBlanksName() {
 
 function getBlanks(){  
 
-
+        getLevel()
          getBlanksName();
         
                        

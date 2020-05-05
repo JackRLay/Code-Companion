@@ -45,7 +45,7 @@ MongoClient.connect(uri, { useNewUrlParser: true },
       }
     );
   
-  dbo.collection("FirstQuiz").insertOne(quiz, function(err, res){
+  dbo.collection("ModulusQuiz").insertOne(quiz, function(err, res){
     console.log("Added quiz");
     db.close
   });

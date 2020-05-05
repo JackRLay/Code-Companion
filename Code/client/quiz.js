@@ -20,9 +20,10 @@ async function getQuizName() {
 
 
 function getQuiz(){  
-
+    
         if (firstRun==true){
          getQuizName();
+         getLevel()
         }
                        
         $.get("http://localhost:9000/getData",{},function(res){
@@ -214,4 +215,10 @@ function complete(){
     
    
 }
+
+function refresh(){
+    location.reload();
+   
+}
+
 

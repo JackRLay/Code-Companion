@@ -14,7 +14,7 @@ MongoClient.connect(uri, { useNewUrlParser: true },
 
     var learningInfo = new schemas.lpInfo(
       {
-        "name": "First",
+        "name": "Modulus",
         "text":"this is LEARNIGN",
         "code":
 `# This program adds two numbers
@@ -30,7 +30,7 @@ ________²('The sum of {0} and {1} is {2}'.________³(num1, num2, sum))`
       }
     );
   
-  dbo.collection("First").insertOne(learningInfo, function(err, res){
+  dbo.collection("Modulus").insertOne(learningInfo, function(err, res){
     console.log("Added Lesson");
     db.close
   });

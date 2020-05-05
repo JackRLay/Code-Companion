@@ -10,37 +10,50 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-        <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/d5653f4676.js" crossorigin="anonymous"></script>
         <script src="/learning.js"></script>
+        <script>
+            function getLevel(){
+           //get users level and progress towards next level
+           var exp ="<%= user.exp %>"
+           var level = Math.floor(exp/100);
+           var progress= exp%100;
 
+           document.getElementById("expText").innerHTML=progress+"/100";
+           document.getElementById("level").innerHTML=level;
+           document.getElementById("expbar").style.width= progress+"%";
+
+       }
+   </script>
     </head>
     <body onload="loadInformation()">
-        <div class="navigationbar"> 
-
-            <img id="banner" src="/resources/codetextlogo.png" width="275" height="55">
-    
-        <a class="buttons" href="#browse">Learn</a>
-        <a class="buttons" href="#students">Students</a>
+        
         
         <div class="navigationbar"> 
 
 		
-            <a href="/home"><img id="banner" href= "/home" src="/resources/codetextlogo.png" width="275" height="55"> </a>
+            <a href="/home"><img id="banner" src="/resources/codetextlogo.png" width="275" height="55"> </a>
         
             
           <div class="dropdownmenu">
-                <a class="dropdown" href="/profile"> <%= user.name %> <em class="fa fa-caret-down"></em></a>
+                <img src="<%=user.thumbnail%>" alt="Avatar" id="avatar"></a>
+                <a class="dropdown" href="/profile"> <%= user.name %></a>
                 <div class="dropdowncontent">
-                    <a href="index.html">Sign Out</a>
+                    <a href="/logout">Sign Out</a>
               </div>
             </div>
             <div id="expcontainer" >
-                <div id="expbar"></div>
+                <div id="expbar">
+                    <div id="expText"></div>
+                </div>
+                
             </div>
-            <div id="level" ></div>
+            <div id="level"></div>
             <div id="levelIcon" ><i class="fab fa-python"></i></div>
             
         </div>
+
+
         <textarea id="editor" aria-readonly="true">
 
 </textarea>

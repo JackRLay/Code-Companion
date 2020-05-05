@@ -110,7 +110,8 @@ app.get("/google",passport.authenticate('google',{
  
 //log out
 app.get("/logout", function (req,res){
-   
+   req.logOut();
+   res.redirect('/')
 });
 
 //google redirect callback route
@@ -126,7 +127,6 @@ app.get("/auth/google/redirect", passport.authenticate('google'), function(req,r
 
 app.get("/home", checkLoggedIn, function (req,res){
    res.render('home.ejs', {user : req.user})
-   console.log(req.user)
 });
 
 app.get('/profile',checkLoggedIn, function(req, res){
@@ -148,13 +148,14 @@ app.get("/retry", checkLoggedIn, function(req, res){
 
 })
 
-app.get("/complete", checkLoggedIn, function(req, res){
+app.get("/complete:number", checkLoggedIn, function(req, res){
+    //add exp from completed task
    req.user.exp= req.user.exp+50;
+   //save completed task in mongo
+   req.user.completed= req.user.completed+","+req.params.number;
    req.user.save()
    console.log(req.user.exp)
    
-   
-
    res.render("home.ejs", {user : req.user})
 
 })

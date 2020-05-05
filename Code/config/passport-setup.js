@@ -44,7 +44,9 @@ passport.use(
                     newUser= new User({
                     name: profile.displayName,
                     googleId: profile.id,
-                    exp: 420,
+                    exp: 100,
+                    thumbnail: profile._json.picture,
+                    completed: ""
                 }).save().then((newUser)=>{
                     //pass to serialize user
                     done(null, newUser);

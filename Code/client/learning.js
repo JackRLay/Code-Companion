@@ -3,15 +3,15 @@ var code;
 
 async function getName() {                    
     await $(function() {
-        var item = localStorage.getItem("id");
-        
+    var item = localStorage.getItem("id");
+
 console.log(item)
-        $.get("http://localhost:9000/learn/"+item);
-    });
-}
+$.get("http://localhost:9000/learn/"+item);
+});}
 
 function loadInformation(){  
      getName();    
+     getLevel()
                    
     $.get("http://localhost:9000/getData",{},function(res){
     let data=res; 

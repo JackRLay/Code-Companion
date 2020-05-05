@@ -43,16 +43,49 @@
    
 }
 
+#lessons{
+  font-size: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: royalblue;
+    display: block;
+  margin-left:38%;
+
+}
+
+
 body, html{
-	background-image: url("");
+	background-image: url("/resources/background.jpg");
 	height: 100%;
 	background-position: center;
 	background-repeat:no-repeat;
 	background-size: cover;
-	font-family: ocrFont;
+  font-family: ocrFont;
+  background-attachment: fixed;
 }
 
+#main{
+  margin-top: 20px;
+  overflow:hidden;
+  background-color: #F5F5F5;
+  width:50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1400px
+}
 
+#mainPanel{
+  margin-top: 20px;
+  overflow:hidden;
+  background-color: #F5F5F5;
+  width:60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 1400px
+}
 
 
 .navigationbar {
@@ -72,6 +105,40 @@ body, html{
   
 }
 
+#avatar{
+ height: 50px;
+ float:right;
+ border-radius: 50%;
+ margin-top: 5px;
+ margin-right: 5px;
+}
+
+#avatarLarge{
+  margin-top: 50px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+#name{
+  margin-top:20px;
+  color:royalblue;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+#profileLevel{
+  margin-top:10px;
+  color:royalblue;
+  text-align: center;
+
+  font-size: 30px;
+}
+
 .dropdownmenu{
 	  float: right;
 }
@@ -81,6 +148,14 @@ body, html{
 
   padding-bottom: 0%;
 
+}
+
+#question{
+  color: white;
+}
+
+.choice{
+  color: white;
 }
 
 .dropdown{
@@ -115,7 +190,86 @@ body, html{
   font-size:20px
 }
 
+#profileexpcontainer{ 
+ 
+  text-align:left;
+  width: 40%;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ddd; 
+}
 
+#profileexpbar{
+  width: 0%;
+  height: 28px;
+    background-color: #397dff;
+   
+  }
+
+
+.bodyText{
+  margin-top:30px;
+  color:royalblue;
+  text-align: center;
+
+  font-size: 30px;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+.column {
+  margin-left: 2%;
+  margin-right: 10px;
+  margin-top: 20px;
+  float: left;
+  width: 30%;
+  padding: 10px;
+  height: 300px; 
+  display: none
+  
+
+}
+
+.bcolumn {
+  margin-left: 2%;
+  margin-right: 10px;
+  margin-top: 20px;
+  float: left;
+  width: 30%;
+  padding: 10px;
+  height: 300px; 
+  cursor: pointer;
+  background-color: blue;
+  
+
+
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ #expTotal{
+  margin-left: 8.5%;
+  margin-top: 3px;
+  position: absolute;
+  font-weight: bold;
+  display:block
+ }
+
+#expText{
+  margin-left: 3.5%;
+  margin-top: 3px;
+  position: absolute;
+  font-weight: bold;
+  display:block
+}
 
 .dropdownmenu:hover .dropdowncontent{
 	display: block;
@@ -154,7 +308,7 @@ body, html{
 }
 
 #expbar{
-
+width: 0%;
 height: 28px;
   background-color: #397dff
   

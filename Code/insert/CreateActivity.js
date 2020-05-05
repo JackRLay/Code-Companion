@@ -14,7 +14,7 @@ MongoClient.connect(uri, { useNewUrlParser: true },
 
     var blanksData = new schemas.blanks(
       {
-        "name": "FirstActivity",
+        "name": "ModulusActivity",
         "code":
 `# This program adds two numbers
 
@@ -32,7 +32,7 @@ ________²('The sum of {0} and {1} is {2}'.________³(num1, num2, sum))`,
       }
     );
   
-  dbo.collection("FirstActivity").insertOne(blanksData, function(err, res){
+  dbo.collection("ModulusActivity").insertOne(blanksData, function(err, res){
     console.log("Added Activity");
     db.close
   });
