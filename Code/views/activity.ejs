@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Fill Blanks - Code Companion</title>
+        <script src="codemirror/lib/codemirror.js"></script>
+        <link href="codemirror/lib/codemirror.css" rel="stylesheet"/>
+        <script src="codemirror/mode/python/python.js"></script>
+        <link href="codemirror/theme/darcula.css" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="style.css" rel="stylesheet"/>
+        
+
+    </head>
+
+    <div class="navigationbar"> 
+
+		
+		<a href="/home"><img id="banner" href= "/home" src="/resources/codetextlogo.png" width="275" height="55"> </a>
+	
+		
+	  <div class="dropdownmenu">
+			<a class="dropdown" href="/profile"> <%= user.name %> <em class="fa fa-caret-down"></em></a>
+			<div class="dropdowncontent">
+				<a href="index.html">Sign Out</a>
+		  </div>
+		</div>
+		<div id="expcontainer" >
+			<div id="expbar"></div>
+		</div>
+		<div id="level" ></div>
+		<div id="levelIcon" ><i class="fab fa-python"></i></div>
+		
+	</div>
+    <body onload="getBlanks()"">
+
+            <form>
+            <label>Complete the blank areas in the code</label><br><br>
+            <label for="ans1">1:</label>
+            <input type="text" id="ans1"><br>
+            <label for="ans2">2:</label>
+            <input type="text" id="ans2"><br>
+            <label for="ans3">3:</label>
+            <input type="text" id="ans3"><br>
+            
+            
+        </form>
+        <button onclick="checkAnswers()">Submit</button>
+
+        <textarea id="editor" aria-readonly="true">
+
+        </textarea>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+        <p>All answers correct!</p>
+        <button onclick= "takeQuiz()" id="myBtn">Take Quiz</button>
+        <button href="/learn" id="myBtn">Home</button>
+
+    </div>
+    
+    </body>
+</html>

@@ -8,8 +8,6 @@ const passportSetup = require('./config/passport-setup');
 const cookieSession = require('cookie-session');
 const keys = require ('./config/keys');
 
-const loginRoutes = require('./routes/login-routes')
-const successRoutes = require('./routes/success-routes')
 
 
 var quizName;
@@ -18,12 +16,10 @@ var resultArray = [];
 var serv = require('http').Server(app);
 
 var uri = keys.mongo.uri;
-0
+
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
-/* mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}).then((test) => {
-    console.log("Connected to DB");
-}); */
+
 
 var dbo;
  // Connect to MongoDB
@@ -36,7 +32,10 @@ var dbo;
     
 });
 
-app.use('/success',successRoutes)
+
+app.use(express.static(__dirname+ '/client/resources'));
+app.use(express.static(__dirname + '/client'));
+
 
 
 
@@ -45,21 +44,29 @@ app.use(cors());
 serv.listen(9000);
 console.log("server started");
 
+ app.use(function(req, res, next) {
+   
+   
+   res.set({"Content-Type": "text/html"});
+   next();
+ }); 
 
 
 app.get('/',function(req, res) {
-   app.use(express.static("/client/resources"));
-   app.use(express.static(__dirname + '/client'));
-   res.type('html')
-   res.sendFile(__dirname + '/client/index.html');
+   
+   
+   //res.sendFile(__dirname + '/client/index.html');
+   res.render('index.ejs')
    
 
 
 });
 
 
-app.get('/getData', function(req, res, next) {
-   
+
+app.get('/getData', function(req, res) {
+   res.set({"Content-Type": "application/json",
+   "Access-Control-Allow-Origin": "*"});
     resultArray.forEach(function(row, err) {        
         res.send(row);
     
@@ -85,33 +92,74 @@ app.use(passport.session());
  *      Login functions      *
  ******************************/
 
+ //checking if user is logged in
+const checkLoggedIn = function(req, res, next){
+   //if not logged in redirect
+   if(!req.user){
+      res.redirect('/google')
+   }
+   else{
+      next();
+   }
+}
+
 //auth with google
-router.get("/google",passport.authenticate('google',{
+app.get("/google",passport.authenticate('google',{
    scope:['profile']
 }));
  
 //log out
-router.get("/logout", function (req,res){
+app.get("/logout", function (req,res){
    
 });
 
-
-
-
 //google redirect callback route
-router.get("/google/redirect", passport.authenticate('google'), function(req,res){
-   res.redirect('/')
-   router.use(express.static(__dirname+ "/client/resources"));
-   router.use(express.static(__dirname + '/client'));
-   res.type('html')
-   res.sendFile(__dirname + '/client/home.html');
-   res.redirect('/profile/')
+app.get("/auth/google/redirect", passport.authenticate('google'), function(req,res){
+   res.set({"Content-Type": "text/html"});
+   res.redirect('/home/')
+})
+
+/******************************
+ *          Navigation        *
+ ******************************/
+
+
+app.get("/home", checkLoggedIn, function (req,res){
+   res.render('home.ejs', {user : req.user})
+   console.log(req.user)
+});
+
+app.get('/profile',checkLoggedIn, function(req, res){
+   res.render('profile.ejs', {user : req.user})
+})
 
 
 /********************************
- *       TIME TRIAL CALL        *
+ *          QUIZ ROUTES         *
  ********************************/
-app.get("/ttquiz/:quizName", function(req, res) {
+
+app.get("/quiz", checkLoggedIn, function(req, res){
+   res.render("quiz.ejs", {user : req.user})
+
+})
+
+app.get("/retry", checkLoggedIn, function(req, res){
+   res.render("retry.ejs", {user : req.user})
+
+})
+
+app.get("/complete", checkLoggedIn, function(req, res){
+   req.user.exp= req.user.exp+50;
+   req.user.save()
+   console.log(req.user.exp)
+   
+   
+
+   res.render("home.ejs", {user : req.user})
+
+})
+
+app.get("/quiz/:quizName", function(req, res) {
    res.set({"Content-Type": "application/json",
    "Access-Control-Allow-Origin": "*"});
     // Connect to modulus collection
@@ -134,8 +182,14 @@ app.get("/ttquiz/:quizName", function(req, res) {
 
 
 /********************************
- *      LEARNING PAGE CALL      *
+ *     LEARNING PAGE ROUTES     *
  ********************************/
+
+app.get("/learn",  checkLoggedIn, function(req, res){
+   res.render("learn.ejs", {user : req.user})
+
+})
+
 app.get("/learn/:infoName", function(req, res) {
    res.set({"Content-Type": "application/json",
    "Access-Control-Allow-Origin": "*"});
@@ -157,9 +211,14 @@ app.get("/learn/:infoName", function(req, res) {
    });
 
 /********************************
- *      GUESS BLANKS CALL       *
+ *      ACTIVITY ROUTES         *
  ********************************/
-app.get("/blanks/:name", function(req, res) {
+app.get("/activity", checkLoggedIn, function(req, res){
+   res.render("activity.ejs", {user : req.user})
+
+})
+
+app.get("/activity/:name", function(req, res) {
    res.set({"Content-Type": "application/json",
    "Access-Control-Allow-Origin": "*"});
     // Connect to FirstTT collection
@@ -179,3 +238,14 @@ app.get("/blanks/:name", function(req, res) {
     results = '';
 
    });
+
+
+  //EXP system routes
+  app.get("/progress/quiz", function(req,res){
+     //get current exp and take in a value +50
+  })
+
+    //EXP system routes
+    app.get("/progress/activity", function(req,res){
+      //get current exp and take in a value +10 Points
+   })

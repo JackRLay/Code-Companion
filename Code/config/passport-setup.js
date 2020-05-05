@@ -21,7 +21,7 @@ passport.use(
     new GoogleStrategy({
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecret,
-    callbackURL:'/google/redirect'
+    callbackURL:'/auth/google/redirect'
     },
     //passport callback function
     /*
@@ -43,7 +43,8 @@ passport.use(
                 //if user is not found create in db
                     newUser= new User({
                     name: profile.displayName,
-                    googleId: profile.id
+                    googleId: profile.id,
+                    exp: 420,
                 }).save().then((newUser)=>{
                     //pass to serialize user
                     done(null, newUser);

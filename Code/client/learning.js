@@ -1,7 +1,6 @@
 var text;
 var code;
 
-
 async function getName() {                    
     await $(function() {
         var item = localStorage.getItem("id");

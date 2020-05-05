@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Lesson - Code Companion</title>
+        <script src="/codemirror/lib/codemirror.js"></script>
+        <link href="/codemirror/lib/codemirror.css" rel="stylesheet"/>
+        <script src="/codemirror/mode/python/python.js"></script>
+        <link href="/codemirror/theme/darcula.css" rel="stylesheet"/>
+        <link rel ="stylesheet" href = "/style.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="/learning.js"></script>
+
+    </head>
+    <body onload="loadInformation()">
+        <div class="navigationbar"> 
+
+            <img id="banner" src="/resources/codetextlogo.png" width="275" height="55">
+    
+        <a class="buttons" href="#browse">Learn</a>
+        <a class="buttons" href="#students">Students</a>
+        
+        <div class="navigationbar"> 
+
+		
+            <a href="/home"><img id="banner" href= "/home" src="/resources/codetextlogo.png" width="275" height="55"> </a>
+        
+            
+          <div class="dropdownmenu">
+                <a class="dropdown" href="/profile"> <%= user.name %> <em class="fa fa-caret-down"></em></a>
+                <div class="dropdowncontent">
+                    <a href="index.html">Sign Out</a>
+              </div>
+            </div>
+            <div id="expcontainer" >
+                <div id="expbar"></div>
+            </div>
+            <div id="level" ></div>
+            <div id="levelIcon" ><i class="fab fa-python"></i></div>
+            
+        </div>
+        <textarea id="editor" aria-readonly="true">
+
+</textarea>
+<div id ="text">
+    
+</div> 
+        <a class="buttons" href="/activity">Activity</a>
+
+        <div id="mainText"></div>
+    </body>
+</html>

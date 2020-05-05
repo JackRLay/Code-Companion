@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz - Code Companion</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://kit.fontawesome.com/d5653f4676.js" crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="/quiz.js"></script>
+</head>
+<body onload="getQuiz()">
+
+    <div class="navigationbar"> 
+
+		
+		<a href="/home"><img id="banner" href= "/home" src="/resources/codetextlogo.png" width="275" height="55"> </a>
+	
+		
+	  <div class="dropdownmenu">
+			<a class="dropdown" href="/profile"> <%= user.name %> <em class="fa fa-caret-down"></em></a>
+			<div class="dropdowncontent">
+				<a href="index.html">Sign Out</a>
+		  </div>
+		</div>
+		<div id="expcontainer" >
+			<div id="expbar"></div>
+		</div>
+		<div id="level" ></div>
+		<div id="levelIcon" ><i class="fab fa-python"></i></div>
+		
+	</div>
+
+
+
+    <div id="container">
+        <div id="quiz" style="display: none">
+            <div id="question"></div>
+            <div id="choices">
+                <div class="choice" id="A" onclick="getAnswer('A')"></div>
+                <div class="choice" id="B" onclick="getAnswer('B')"></div>
+                <div class="choice" id="C" onclick="getAnswer('C')"></div>
+            </div>
+            <div id="timer">
+                <div id="counter"></div>
+                <div id="btimeGauge"></div>
+                <div id="timeGauge"></div>
+            </div>
+            <div id="progress"></div>
+        </div>
+        <div id="scoreContainer" style="display: none"></div>
+    </div>
+    
+    
+    <!-- Full marks modal -->
+    <div id="modal" class="modal">
+
+        <!-- Content -->
+        <div class="modal-content">
+        <p id="line1">100%</p>
+        <p id="line2"> All answers correct!</p>
+        <p id="line3">+50 Python Points</p>
+        <button href="/complete " id="homeBtn">Home</button>
+        <button class="hidden" href="/quiz" id="again">Try Again?</button>
+        <button class="hidden" href="/retry" id="back">Back to lesson</button>
+
+    </div>
+
+
+
+</body>
+</html>

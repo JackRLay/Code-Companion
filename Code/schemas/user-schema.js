@@ -8,6 +8,7 @@ const userSchema = new Schema({
     // given_name: String,
     //family_name: String,
     googleId: Number,
+    exp: Number
 
 });
 
