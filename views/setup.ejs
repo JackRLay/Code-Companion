@@ -7,36 +7,8 @@
 	<script src="https://kit.fontawesome.com/d5653f4676.js" crossorigin="anonymous"></script>
 	<script>
 
-		function getSelected(id, number){
-			localStorage.setItem("id",id);
-			localStorage.setItem("number",number);
 
-			
-			getName(id)
 
-	
-		setTimeout(function(){getName(id)},500);
-						
-		}
-
-		function getName(id) {                    
-   		 
-   		 var item = id;
-			$.get("http://localhost:9000/topic/"+item);
-			getData()
-			
-		}
-		function getData(){
-			$.get("http://localhost:9000/getData",{},function(res){
-				let data=res; 
-				data=JSON.stringify(data)
-				
-			   localStorage.setItem("data",data)
-	
-			   window.location.href="/learn"
-
-})
-		}
 
 		
 
@@ -49,24 +21,10 @@
 			document.getElementById("expText").innerHTML=progress+"/100";
 			document.getElementById("level").innerHTML=level;
 			document.getElementById("expbar").style.width= progress+"%";
-			getCompleted();
-
-		}
-
-		function getCompleted(){
-			var completed= "<%= user.completed%>"
-			var clean = completed.replace(/ :/g, "")
-			clean = clean.replace(/:/g, "")
-			var split = clean.split(",");
-			var uniqueSet= new Set(split)
-			var array= [...uniqueSet];
-
-
-			for(i=1;i<array.length;i++){
-			 	document.getElementById(array[i]).style.background= "#CCFFCC"
-			 }
 			
 		}
+
+
 
 	</script>
 </head>
@@ -103,7 +61,7 @@
     <h3>Option 1: Download Python installer</h3>
     <li>
         1. Head to the
-        <a href="https.www.python.org/downloads/windows">Python download page</a>
+        <a href="https://www.python.org/downloads/windows">Python download page</a>
     </li>
     <li>
         2. Click on the <strong>Latest Python 3 Release Python 3.x.x</strong>
@@ -118,11 +76,11 @@
     <p>Alternatively, online python interpreters can be used</p>
     <li>
         Python.org Online Console
-        <a href="www.python.org/shell">www.python.org/shell</a>
+        <a href="https://www.python.org/shell">www.python.org/shell</a>
     </li>
     <li>
         Python Fiddle
-        <a href="pythonfiddle.com">pythonfiddle.com</a>
+        <a href="https://www.pythonfiddle.com">pythonfiddle.com</a>
     </li>
 
 </div>
