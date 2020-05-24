@@ -42,9 +42,9 @@
 			else if(exp>=300 && exp<400){
 				rank="Computer Charmer"
 				rankNumber=3
-				document.getElementsById("1").style.display= "block";
-				document.getElementsById("2").style.display= "block";
-				document.getElementsById("3").style.display= "block";
+				document.getElementById("1").style.display= "block";
+				document.getElementById("2").style.display= "block";
+				document.getElementById("3").style.display= "block";
 
 			}
 			else if(exp>=400 && exp<500){
@@ -55,7 +55,7 @@
 				document.getElementById("3").style.display= "block";
 				document.getElementById("4").style.display= "block";
 			}
-			else if(exp>=500 && exp<1000){
+			else if(exp>=500 && exp<600){
 				rank="Whitespace Warrior"
 				rankNumber=5
 				document.getElementById("1").style.display= "block";
@@ -64,7 +64,7 @@
 				document.getElementById("4").style.display= "block";
 				document.getElementById("5").style.display= "block";
 			}
-			else if(exp>=1000 && exp<1500){
+			else if(exp>=600){
 				rank="Coding Champion"
 				rankNumber=6
 				document.getElementById("1").style.display= "block";
@@ -74,42 +74,7 @@
 				document.getElementById("5").style.display= "block";
 				document.getElementById("6").style.display= "block";
 			}
-			else if(exp>=1500 && exp<2000){
-				rank="Python Professional"
-				rankNumber=7
-				document.getElementById("1").style.display= "block";
-				document.getElementById("2").style.display= "block";
-				document.getElementById("3").style.display= "block";
-				document.getElementById("4").style.display= "block";
-				document.getElementById("5").style.display= "block";
-				document.getElementById("6").style.display= "block";
-				document.getElementById("7").style.display= "block";
-			}
-			else if(exp>=2000 && exp<2500){
-				rank="Float Fanatic"
-				rankNumber=8
-				document.getElementById("1").style.display= "block";
-				document.getElementById("2").style.display= "block";
-				document.getElementById("3").style.display= "block";
-				document.getElementById("4").style.display= "block";
-				document.getElementById("5").style.display= "block";
-				document.getElementById("6").style.display= "block";
-				document.getElementById("7").style.display= "block";
-				document.getElementById("8").style.display= "block";
-			}
-			else if(exp>=2500 && exp<3000){
-				rank="Code Companion"
-				rankNumber=9
-				document.getElementById("1").style.display= "block";
-				document.getElementById("2").style.display= "block";
-				document.getElementById("3").style.display= "block";
-				document.getElementById("4").style.display= "block";
-				document.getElementById("5").style.display= "block";
-				document.getElementById("6").style.display= "block";
-				document.getElementById("7").style.display= "block";
-				document.getElementById("8").style.display= "block";
-				document.getElementById("9").style.display= "block";
-			}
+
 			console.log(rank)
 			console.log(rankNumber)
 
@@ -166,45 +131,32 @@
 		<div class="row">
 			<div class="column"  id=1 style="background-color:#397dff;">
 			  <h2>Aspiring Programmer</h2>
-			  <p>image</p>
+			  <img src="/resources/Rank1.png" class="rankImage"></a>
 			</div>
 			<div class="column" id=2 style="background-color:#87b0ff;">
 			  <h2>Blossoming Beginner</h2>
-			  <p>image</p>
+			  <img src="/resources/level2.png" class="rankImage"></a>
 			</div>
 			<div class="column" id=3 style="background-color:#397dff;">
 			  <h2>Computer Charmer</h2>
-			  <p>image</p>
+			  <img src="/resources/level3.png" class="rankImage"></a>
 			</div>
 		  </div>
 		  <div class="row">
 			<div class="column" id=4 style="background-color:#397dff;">
 			  <h2>Variable Vanguard</h2>
-			  <p>image.</p>
+			  <img src="/resources/level4.png" class="rankImage"></a>
 			</div>
 			<div class="column" id=5 style="background-color:#87b0ff;">
 			  <h2>Whitespace Warrior</h2>
-			  <p>image</p>
+			  <img src="/resources/level5.png" class="rankImage"></a>
 			</div>
-			<div class="column" id=6 style="background-color:#397dff;">
+			<div class="column" id=6 style="background-color:white;">
 			  <h2>Coding Champion</h2>
-			  <p>image</p>
+			  <img src="/resources/level6.png" class="rankImage"></a>
 			</div>
 		  </div>
-		  <div class="row">
-			<div class="column" id=7 style="background-color:#397dff;">
-			  <h2>Float Fanatic</h2>
-			  <p>image</p>
-			</div>
-			<div class="column" id=8 style="background-color:#87b0ff;">
-			  <h2>Python Professional</h2>
-			  <p>image</p>
-			</div>
-			<div class="column" id=9 style="background-color:#397dff;">
-			  <h2>Code Companion</h2>
-			  <p>image</p>
-			</div>
-		  </div>
+
 	
 	</div>
 </div>

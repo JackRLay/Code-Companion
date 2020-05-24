@@ -8,6 +8,41 @@
   display: none; 
 }
  
+#text{
+
+float: right;
+position:relative;
+width:45%;
+font-size: 25px;
+}
+
+#editor{
+position: relative;
+text-align: center;
+
+
+}
+
+#activity{
+  font-size: 50px;
+  font-weight: bolder;
+  float:right
+}
+
+.setup{
+  margin-top:2px;
+  float: left;
+  color:royalblue;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 27px;
+}
+
+#container{
+ position: relative;
+}
+
 .modal {
   display: none; 
   position: fixed; 
@@ -40,6 +75,8 @@
 #mainText{
   font-family: ocrFont;
   width: 100%;
+  font-size: 30px;
+  cursor: default;
    
 }
 
@@ -56,7 +93,7 @@
 
 
 body, html{
-	background-image: url("/resources/background.jpg");
+/* background-image: url("/resources/background.jpg"); */
 	height: 100%;
 	background-position: center;
 	background-repeat:no-repeat;
@@ -84,7 +121,7 @@ body, html{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  height: 1400px
+  height: 750px
 }
 
 
@@ -151,11 +188,14 @@ body, html{
 }
 
 #question{
-  color: white;
+  color: black;
+  font-size:25px
 }
 
 .choice{
-  color: white;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;	
 }
 
 .dropdown{
@@ -208,6 +248,13 @@ body, html{
    
   }
 
+.rankImage{
+    width: 70%;
+  height: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 
 .bodyText{
   margin-top:30px;
@@ -243,10 +290,14 @@ body, html{
   padding: 10px;
   height: 300px; 
   cursor: pointer;
-  background-color: blue;
+
   
 
 
+}
+
+.buttons{
+  cursor: pointer;
 }
 
 .row:after {
@@ -313,3 +364,4 @@ height: 28px;
   background-color: #397dff
   
 }
+

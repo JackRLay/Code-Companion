@@ -27,7 +27,7 @@ var dbo;
     function(err, db) {
     if (err) throw err;
     console.log("Database connected!");
-    dbo = db.db("quizdb");
+    dbo = db.db("Topics");
    
     
 });
@@ -37,11 +37,13 @@ app.use(express.static(__dirname+ '/client/resources'));
 app.use(express.static(__dirname + '/client'));
 
 
+var serverPort = 9000;
 
+var port =serverPort;
 
 
 app.use(cors());
-serv.listen(9000);
+serv.listen(port);
 console.log("server started");
 
  app.use(function(req, res, next) {
@@ -63,7 +65,7 @@ app.get('/',function(req, res) {
 });
 
 
-
+//Methods for getting data from Mongo
 app.get('/getData', function(req, res) {
    res.set({"Content-Type": "application/json",
    "Access-Control-Allow-Origin": "*"});
@@ -73,12 +75,33 @@ app.get('/getData', function(req, res) {
      })
 
 })
+
+app.get("/topic/:topicName", function(req, res) {
+   res.set({"Content-Type": "application/json",
+   "Access-Control-Allow-Origin": "*"});
+    // Connect to modulus collection
+    var results = dbo.collection(req.params.topicName).find({});
+    //Clears the array before filling it to prevent multiple quizzes from being loaded
+       resultArray = []; 
+    // Loops through results and converts to JSON string
+    results.forEach(function(doc,err) {
+   
+        resultArray.push(JSON.stringify(doc));   
+   
+    });
+
+   // Redirects user to home page if they attempt to access a quiz when they're not supposed to
+    res.redirect("/");
+    results = '';
+   });
+
+
 /******************************
  *      Cookie functions      *
  ******************************/
 app.use(cookieSession({
    //value is in ms
-   //1 day: 24 hours, 60 mins in an hour, 60 seconds in a min
+   //1 day: 24 hours, 60 mins in an hour, 60 seconds in a min, 1000 ms in a second
    maxAge: 24 * 60 * 60 * 1000,
    keys: [keys.session.cookieKey]
 }))
@@ -133,6 +156,9 @@ app.get('/profile',checkLoggedIn, function(req, res){
    res.render('profile.ejs', {user : req.user})
 })
 
+app.get('/setup',checkLoggedIn, function(req, res){
+   res.render('setup.ejs', {user : req.user})
+})
 
 /********************************
  *          QUIZ ROUTES         *
@@ -160,25 +186,6 @@ app.get("/complete:number", checkLoggedIn, function(req, res){
 
 })
 
-app.get("/quiz/:quizName", function(req, res) {
-   res.set({"Content-Type": "application/json",
-   "Access-Control-Allow-Origin": "*"});
-    // Connect to modulus collection
-    var results = dbo.collection(req.params.quizName).find({});
-    //Clears the array before filling it to prevent multiple quizzes from being loaded
-       resultArray = []; 
-    // Loops through results and converts to JSON string
-    results.forEach(function(doc,err) {
-   
-        resultArray.push(JSON.stringify(doc));   
-   
-    });
-
-       // Goes back to the root to then send the data
-    //res.redirect("/");
-    res.redirect("/");
-    results = '';
-   });
 
 
 
@@ -191,25 +198,6 @@ app.get("/learn",  checkLoggedIn, function(req, res){
 
 })
 
-app.get("/learn/:infoName", function(req, res) {
-   res.set({"Content-Type": "application/json",
-   "Access-Control-Allow-Origin": "*"});
-    // Connect to FirstTT collection
-    var results = dbo.collection(req.params.infoName).find({});
-    //Clears the array before filling it to prevent multiple quizzes from being loaded
-       resultArray = []; 
-    // Loops through results and converts to JSON string
-    results.forEach(function(doc,err) {
-   
-        resultArray.push(JSON.stringify(doc));   
-   
-    });
-
-       // Goes back to the root to then send the data
-    //res.redirect("/");
-    res.redirect("/");
-    results = '';
-   });
 
 /********************************
  *      ACTIVITY ROUTES         *
@@ -219,26 +207,7 @@ app.get("/activity", checkLoggedIn, function(req, res){
 
 })
 
-app.get("/activity/:name", function(req, res) {
-   res.set({"Content-Type": "application/json",
-   "Access-Control-Allow-Origin": "*"});
-    // Connect to FirstTT collection
-    var results = dbo.collection(req.params.name).find({});
-    //Clears the array before filling it to prevent multiple quizzes from being loaded
-       resultArray = []; 
-    // Loops through results and converts to JSON string
-    results.forEach(function(doc,err) {
-   
-        resultArray.push(JSON.stringify(doc));   
-   
-    });
 
-       // Goes back to the root to then send the data
-    //res.redirect("/");
-    res.redirect("/");
-    results = '';
-
-   });
 
 
   //EXP system routes

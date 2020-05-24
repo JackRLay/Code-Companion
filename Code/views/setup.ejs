@@ -10,21 +10,20 @@
 		function getSelected(id, number){
 			localStorage.setItem("id",id);
 			localStorage.setItem("number",number);
-			
+
 			
 			getName(id)
 
 	
-		setTimeout(function(){getData()
-		},500);
-					
+		setTimeout(function(){getName(id)},500);
+						
 		}
 
 		function getName(id) {                    
    		 
    		 var item = id;
 			$.get("http://localhost:9000/topic/"+item);
-			
+			getData()
 			
 		}
 		function getData(){
@@ -33,15 +32,12 @@
 				data=JSON.stringify(data)
 				
 			   localStorage.setItem("data",data)
-			   console.log(data)
-			   window.location.href="/learn"	
+	
+			   window.location.href="/learn"
 
 })
 		}
 
-
-			
-	
 		
 
 		function getLevel(){
@@ -103,43 +99,32 @@
 	</div>
 
 <div id= "mainPanel">
+    <h2>How to set up Python</h2>
+    <h3>Option 1: Download Python installer</h3>
+    <li>
+        1. Head to the
+        <a href="https.www.python.org/downloads/windows">Python download page</a>
+    </li>
+    <li>
+        2. Click on the <strong>Latest Python 3 Release Python 3.x.x</strong>
+    </li>
+    <li>
+        3. Scroll down and click <strong>Windows x86-64 executable installer </strong> (64-bit) or  <strong>Windows x86 executable installer </strong>(32 bit)
+    </li>
+    <li>
+        4. Run the installer and follow the instructions
+    </li>
+    <h3>Option 2: Online Python Interpreters</h3>
+    <p>Alternatively, online python interpreters can be used</p>
+    <li>
+        Python.org Online Console
+        <a href="www.python.org/shell">www.python.org/shell</a>
+    </li>
+    <li>
+        Python Fiddle
+        <a href="pythonfiddle.com">pythonfiddle.com</a>
+    </li>
 
-<div id="lessons">Lessons</div>
-	
-<div id="lessonButtons">
-	<div class="row">
-		<div class="bcolumn" onClick="getSelected('FirstTopic', 1)" id=1 style="background-color:lightgray">
-		  <h2>Introduction to Python</h2>
-		  <p>Get straight into learning to code by printing text and using comments</p>
-		</div>
-		<div class="bcolumn" onClick="getSelected('Variables', 2)" id=2 style="background-color:lightgray">
-		  <h2>Variables and Types</h2>
-		  <p>This topic covers how to declare and use variables</p>
-		</div>
-		<div class="bcolumn" onClick="getSelected('Structure', 3)" id=3 style="background-color:lightgray">
-		  <h2>Structuring Code</h2>
-		  <p>Learn how to structure code into blocks in Python</p>
-		</div>
-	  </div>
-	  <div class="row">
-		<div class="bcolumn" onClick="getSelected('Operators', 4)" id=4 style="background-color:lightgray">
-		  <h2>Mathematic Operators</h2>
-		  <p>This topic covers how to use numbers, floats and mathematic operators</p>
-		</div>
-		<div class="bcolumn" onClick="getSelected('Lists', 5)" id=5 style="background-color:lightgray">
-		  <h2>Lists</h2>
-		  <p>This topic covers lists and how to use them</p>
-		</div>
-		<div class="bcolumn" onClick="getSelected('Loops', 6)" id=6 style="background-color:lightgray">
-		  <h2>Loops</h2>
-		  <p>Learn how to use for and while loops</p>
-		</div>
-	  </div>
-
-	  </div>
-
-</div>
-</div>	
 </div>
 </body>
 </html>

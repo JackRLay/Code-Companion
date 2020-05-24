@@ -14,6 +14,7 @@
         <script src="/learning.js"></script>
         <script>
             function getLevel(){
+                
            //get users level and progress towards next level
            var exp ="<%= user.exp %>"
            var level = Math.floor(exp/100);
@@ -24,6 +25,11 @@
            document.getElementById("expbar").style.width= progress+"%";
 
        }
+
+
+
+       
+
    </script>
     </head>
     <body onload="loadInformation()">
@@ -53,14 +59,14 @@
             
         </div>
 
-
+        <div id ="text"></div>
         <textarea id="editor" aria-readonly="true">
 
 </textarea>
 <div id ="text">
     
 </div> 
-        <a class="buttons" href="/activity">Activity</a>
+        <a id="activity" href="/activity">Activity</a>
 
         <div id="mainText"></div>
     </body>

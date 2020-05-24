@@ -16,7 +16,7 @@
 			var exp ="<%= user.exp %>"
 			var level = Math.floor(exp/100);
 			var progress= exp%100;
-                console.log(exp)
+
 
 			document.getElementById("level").innerHTML=level;
             document.getElementById("expbar").style.width= progress+"%";
@@ -55,7 +55,7 @@
 
     <body onload="getBlanks()" >
 
-            <form>
+            <form class="forms">
             <label>Complete the blank areas in the code</label><br><br>
             <label for="ans1">1:</label>
             <input type="text" id="ans1"><br>
@@ -78,8 +78,9 @@
         <!-- Modal content -->
         <div class="modal-content">
         <p>All answers correct!</p>
-        <button onclick= "takeQuiz()" id="myBtn">Take Quiz</button>
-        <button href="/learn" id="myBtn">Home</button>
+        <button href="/learn" id="myBtn">Back To Lesson</button>
+        <button onclick= "takeQuiz()" id="myB tn">Take Quiz</button>
+        
 
     </div>
     

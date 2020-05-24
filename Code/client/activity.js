@@ -5,32 +5,27 @@
 var correct1;
 var correct2;
 var correct3;
-
-async function getBlanksName() {                    
-    await $(function() {
-        $.get("http://localhost:9000/activity/"+localStorage.getItem("id")+"Activity");
-    });
-}
+var data
 
 
 function getBlanks(){  
-
         getLevel()
-         getBlanksName();
-        
-                       
-        $.get("http://localhost:9000/getData",{},function(res){
-        let data=res; 
-        
-        getData(data);
-})
+        getData();
+
 }
 
 function getData(data){
-    code =data.code
-    correct1 = data.correct1;
-    correct2 = data.correct2;
-    correct3 = data.correct3;
+    var data= localStorage.getItem("data");
+    data= JSON.parse(data)
+
+    code =data.activity.code
+    correct1=data.activity.correct1
+    correct2=data.activity.correct2
+    correct3=data.activity.correct3
+
+    
+
+    
     document.getElementById("editor").value = code;
 
     var editor= CodeMirror.fromTextArea(document.getElementById('editor'),
@@ -49,6 +44,8 @@ function getData(data){
 
 function checkAnswers(){
     //get answers
+    var data2= localStorage.getItem("data2");
+
     var ans1= document.getElementById("ans1").value;
     var ans2= document.getElementById("ans2").value;
     var ans3= document.getElementById("ans3").value;

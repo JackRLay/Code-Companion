@@ -1,29 +1,23 @@
 var text;
 var code;
 
-async function getName() {                    
-    await $(function() {
-    var item = localStorage.getItem("id");
 
-console.log(item)
-$.get("http://localhost:9000/learn/"+item);
-});}
 
 function loadInformation(){  
-     getName();    
-     getLevel()
-                   
-    $.get("http://localhost:9000/getData",{},function(res){
-    let data=res; 
-    getData(data);
-})
+         
+    getLevel()
+    getData();
+    
 }
 
-function getData(data){
-    text = data.text;
-    code = data.code;
-    console.log(text)
-    console.log(code)
+
+
+
+function getData(){
+    var data= localStorage.getItem("data");
+    data= JSON.parse(data)
+    text = data.learningInfo.text;
+    code = data.learningInfo.code;
     document.getElementById("text").innerHTML = text;
     document.getElementById("editor").value = code;
 
@@ -38,5 +32,8 @@ function getData(data){
             //code editor settings
             editor.setSize("1000","450");
             editor.setOption("readOnly",true); 
+    
+
+
 
 }
